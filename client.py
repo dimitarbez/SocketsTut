@@ -17,5 +17,12 @@ def send(msg):
     send_length += b' ' * (HEADER - len(send_length))
     client.send(send_length)
     client.send(message)
+    print(client.recv(2048).decode(FORMAT))
 
-send("hello burek!")
+while True:
+    tmp_message = input("Enter message")
+    send(tmp_message)
+    if tmp_message == "q":
+        break
+
+send(DISCONNECT_MESSAGE)
